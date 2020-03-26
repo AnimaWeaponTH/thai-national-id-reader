@@ -120,12 +120,14 @@ const sendCommand = async (reader, command, protocol) => {
 const transmit = async (reader, command, protocol) => {
   return new Promise((resolve, reject) => {
     reader.transmit(Buffer.from(command), 256, protocol, (err, data) => {
-      if(err) {
-        reject(err)
-      }
-      else {
-        resolve(data)
-      }
+      setTimeout(() => {
+        if(err) {
+          reject(err)
+        }
+        else {
+          resolve(data)
+        }
+      }, 0)
     })
   })
 }
